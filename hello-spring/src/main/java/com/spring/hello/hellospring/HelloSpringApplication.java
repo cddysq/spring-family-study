@@ -26,6 +26,6 @@ public class HelloSpringApplication {
     @RequestMapping("/hello")
     public String hello() {
         //指定返回数据
-        return "Hello Spring";
+        return "Hello World from the Spring";
     }
 }
