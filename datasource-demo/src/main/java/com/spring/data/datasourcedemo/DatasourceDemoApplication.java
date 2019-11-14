@@ -25,6 +25,7 @@ public class DatasourceDemoApplication implements CommandLineRunner {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
     public static void main(String[] args) {
         SpringApplication.run( DatasourceDemoApplication.class, args );
 
@@ -34,14 +35,27 @@ public class DatasourceDemoApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         //CommandLineRunner接口，会在spring bean初始化之后，SpringApplication run之前执行，主要用于项目启动前初始化资源文件等，这段初始化代码在整个应用生命周期内只会执行一次。
         showConnection();
+        showData();
     }
 
+    /**
+     * 查看Spring默认配置数据源信息
+     */
     private void showConnection() throws SQLException {
-        //在日志中打印使用的数据源
+        //在日志中打印使用的默认数据源为HikariDataSource
         log.info( dataSource.toString() );
         Connection conn = dataSource.getConnection();
         //在日志中打印获取到的数据源连接对象
         log.info( conn.toString() );
         conn.close();
+    }
+
+    /**
+     * 执行查询查看日志打印信息
+     */
+    private void showData() {
+        //进行数据查询，返回List集合，遍历打印到日志当中
+        jdbcTemplate.queryForList( "SELECT * FROM Student" )
+                .forEach( row -> log.info( row.toString() ) );
     }
 }
