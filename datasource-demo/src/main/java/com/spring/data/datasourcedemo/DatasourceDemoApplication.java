@@ -25,7 +25,6 @@ public class DatasourceDemoApplication implements CommandLineRunner {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
     public static void main(String[] args) {
         SpringApplication.run( DatasourceDemoApplication.class, args );
 
