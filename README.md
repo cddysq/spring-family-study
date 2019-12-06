@@ -1,3 +1,6 @@
 # spring-family-study
+
 1. [初识 Spring-Boot](https://github.com/CodeHaotian/spring-family-study/tree/master/hello-spring)
+2. [Spring-Boot 配置单数据源](https://github.com/CodeHaotian/spring-family-study/tree/master/datasource-demo)
+3. [Spring-Boot 配置多数据源](https://github.com/CodeHaotian/spring-family-study/tree/master/multi-datasource-demo)
 
