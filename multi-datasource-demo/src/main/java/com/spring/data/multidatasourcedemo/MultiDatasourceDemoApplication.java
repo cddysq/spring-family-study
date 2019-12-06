@@ -54,7 +54,7 @@ public class MultiDatasourceDemoApplication {
     /**
      * 创建一个事务
      *
-     * @param fooDataSource 指定数据源
+     * @param fooDataSource 指定交由此事务管理的数据源
      * @return 自定义的事务
      */
     @Bean
