@@ -1,0 +1,21 @@
+# 自定义第一个数据源
+foo:
+  datasource:
+    password: ''
+    url: jdbc:h2:mem:foo
+    username: admin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+# 自定义第二个数据源
+zi:
+  datasource:
+    password: ''
+    url: jdbc:h2:mem:zi
+    username: admin
