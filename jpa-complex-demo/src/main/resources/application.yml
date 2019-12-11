@@ -1,0 +1,13 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  jpa:
+    hibernate:
+      # 创建表后删除表
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        # 格式化sql并显示
+        format_sql: true
+        show_sql: true
