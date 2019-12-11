@@ -49,10 +49,14 @@ public class JpaComplexDemoApplication implements ApplicationRunner {
     }
 
     private void initOrder() {
+        //添加一杯名为拉铁的咖啡，设置其金额为30.0 CNY
         Coffee latte = Coffee.builder().name( "latte" )
+                //指定货币代码为CNY，使用joda-money将double类型的数字转换为货币
                 .price( Money.of( CurrencyUnit.of( "CNY" ), 30.0 ) )
                 .build();
+        //保存数据
         coffeeRepository.save( latte );
+        //日志打印咖啡信息
         log.info( "Coffee：{}", latte );
 
         Coffee espresso = Coffee.builder().name( "espresso" )
