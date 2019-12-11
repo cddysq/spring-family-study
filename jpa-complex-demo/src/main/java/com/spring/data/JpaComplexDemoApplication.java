@@ -43,6 +43,7 @@ public class JpaComplexDemoApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        //ApplicationRunner接口与CommandLineRunner做的事情是一样的，执行时机都是在容器启动完成的时候进行执行。唯一不同的是ApplicationRunner会封装命令行参数，可以获得更详细的命令行参数。
         initOrder();
         findOrders();
     }
