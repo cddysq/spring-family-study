@@ -8,13 +8,14 @@ import java.util.List;
 /**
  * @Author: Haotian
  * @Date: 2019/12/10 20:11
- * @Description: 父接口
+ * @Description: 父接口继承PagingAndSortingRepository对CrudRepository的扩展，以提供使用分页和排序。
  */
 @NoRepositoryBean
-public interface BaseRepository<T,Long> extends PagingAndSortingRepository<T,Long> {
+public interface BaseRepository<T, Long> extends PagingAndSortingRepository<T, Long> {
     /**
-     * 根据订单和更新时间查找前3名
-     * @return 前三名数据列表
+     * 根据更新时间降序，再按照id进行升序
+     *
+     * @return 前三条数据
      */
     List<T> findTop3ByOrderByUpdateTimeDescIdAsc();
 }

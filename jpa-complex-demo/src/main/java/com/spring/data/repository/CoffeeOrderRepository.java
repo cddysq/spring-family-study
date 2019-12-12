@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface CoffeeOrderRepository extends BaseRepository<CoffeeOrder, Long> {
     /**
-     * 根据客户订单和Id查找咖啡订单
+     * 根据客户名查找订单通过id排序
      *
      * @param customer 客户信息
      * @return 咖啡订单
@@ -19,12 +19,11 @@ public interface CoffeeOrderRepository extends BaseRepository<CoffeeOrder, Long>
     List<CoffeeOrder> findByCustomerOrderById(String customer);
 
     /**
-     * 根据名称查找咖啡订单
+     * 根据咖啡名查找订单
      *
-     * @param name 订单名
+     * @param name 咖啡名
      * @return 咖啡订单
      */
     List<CoffeeOrder> findByItems_Name(String name);
-
 
 }

@@ -24,3 +24,8 @@
 10. `@UpdateTimestamp`：自动记录更新的时间。
 11. `@ManyToMany`：指定表的关系为多对多。
 12. `@JoinTable(name = "表名")`：配置连接表，默认为两个关联的主实体表的连接名称，用下划线分隔。
+
+**Spring 相关：**
+
+1. `@NoRepositoryBean`：告诉Spring不需要为这个repository创建一个bean。
+2. `@EnableJpaRepositories`：开启JPA存储库扫描，默认情况下，将扫描Spring数据存储库带注释的配置类包。
