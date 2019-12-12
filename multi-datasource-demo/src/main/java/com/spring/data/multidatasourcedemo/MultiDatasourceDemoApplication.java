@@ -18,11 +18,6 @@ import javax.sql.DataSource;
 /**
  * @Author: Haotian
  * @Date: 2019/12/6 19:31
- * @Parameter : @Bean 注解用于告诉方法，产生一个Bean对象，然后这个Bean对象交给Spring管理。
- * 产生这个Bean对象的方法Spring只会调用一次，随后这个Spring将会将这个Bean对象放在自己的IOC容器中。
- * 默认bean的名称就是其方法名。但是也可以使用name属性指定其名称。
- * @Parameter : @ConfigurationProperties 注解的作用是可以根据一个前缀读取配置文件的数据，只要属性名一致就能将数据自动封装。
- * @Parameter : @Resource 资源注释标记.将注释应用于字段或方法时，容器将在组件初始化时将请求的资源的实例注入到应用程序组件中。如果将注释应用于组件类，则该注释声明应用程序将在运行时查找的资源。
  **/
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
