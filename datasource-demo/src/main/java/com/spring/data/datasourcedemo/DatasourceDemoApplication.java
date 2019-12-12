@@ -14,16 +14,17 @@ import java.sql.SQLException;
 /**
  * @Author：Haotian
  * @Date：2019/11/12 20:57
- * @Parameter : @Slf4j 启用Slf4j来记录日志
- * @Parameter ：@Autowired 让 spring 完成 bean 的自动装配的工作。简单来说spring帮我们进行对象创建管理等，让程序员可以直接使用对象。
  */
 @SpringBootApplication
 @Slf4j
 public class DatasourceDemoApplication implements CommandLineRunner {
-    @Autowired
-    private DataSource dataSource;
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
+
+    public DatasourceDemoApplication(DataSource dataSource, JdbcTemplate jdbcTemplate) {
+        this.dataSource = dataSource;
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run( DatasourceDemoApplication.class, args );
