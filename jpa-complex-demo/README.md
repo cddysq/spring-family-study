@@ -1,18 +1,17 @@
 ## Spring-Boot  JPA  演示
 
+### 简述：
+
 **通过使用 JPA 注解让 Hibernate 为我们进行数据库表的映射创建，通过继承 `CrudRepository` 接口使用其提供的CRUD方法进行数据的相应操作，观察控制台的日志打印了解 JPA 的使用。**
 
-**本次演示首次出现注解如下：**
+#### 本次演示首次出现注解如下：
 
-**Lombok 相关：**
+##### Spring 相关：
 
-1. `@Data`：注解在类上，相当于`@ToString`，`@EqualsAndHashCode`， `@RequiredArgsConstructor`，`@Getter`和`@Setter`五个注解的功能。
-2. `@ToString`：用于生成`toString()`方法。只能用于类级别。`static`修饰的变量不能生成在`toString()`方法中。
-3. `@NoArgsConstructor`：生成一个无参构造器。
-4. `@AllArgsConstructor`：生成一个除`static`修饰字段外的全参构造器。
-5. `@Builder`：被注解的类加个构造者模式。
+1. `@NoRepositoryBean`：告诉Spring不需要为这个repository创建一个bean。
+2. `@EnableJpaRepositories`：开启JPA存储库扫描，默认情况下，将扫描Spring数据存储库带注释的配置类包。
 
-**JPA 相关：**
+##### JPA 相关：
 
 1. `@MappedSuperclass`：标注的类将不是一个完整的实体类，不能再标注`@Entity`或`@Table`注解。他将不会映射到数据库表，但是他的属性都将映射到其子类的数据库字段中。
 2. `@Entity`：表明该类为一个实体类,与数据库表进行映射。
@@ -27,7 +26,10 @@
 11. `@ManyToMany`：指定表的关系为多对多。
 12. `@JoinTable(name = "表名")`：配置连接表，默认为两个关联的主实体表的连接名称，用下划线分隔。
 
-**Spring 相关：**
+##### Lombok 相关：
 
-1. `@NoRepositoryBean`：告诉Spring不需要为这个repository创建一个bean。
-2. `@EnableJpaRepositories`：开启JPA存储库扫描，默认情况下，将扫描Spring数据存储库带注释的配置类包。
+1. `@Data`：注解在类上，相当于`@ToString`，`@EqualsAndHashCode`， `@RequiredArgsConstructor`，`@Getter`和`@Setter`五个注解的功能。
+2. `@ToString`：用于生成`toString()`方法。只能用于类级别。`static`修饰的变量不能生成在`toString()`方法中。
+3. `@NoArgsConstructor`：生成一个无参构造器。
+4. `@AllArgsConstructor`：生成一个除`static`修饰字段外的全参构造器。
+5. `@Builder`：被注解的类加个构造者模式。

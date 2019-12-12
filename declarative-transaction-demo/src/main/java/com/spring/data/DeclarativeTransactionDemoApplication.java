@@ -1,4 +1,4 @@
-package com.spring.data.declarativetransactiondemo;
+package com.spring.data;
 
 import com.spring.data.exception.RollbackException;
 import com.spring.data.service.FooService;
@@ -15,8 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * @Author: Haotian
  * @Date: 2019/12/7 16:48
- * @Parameter : @EnableTransactionManagement 启用Spring注解驱动的事务管理功能，等同于xml配置方式的 <tx:annotation-driven />
- * @Parameter : @ComponentScan 组件扫描指令。扫描指定路径下的包，把符合扫描规则的类自动装配到spring的bean容器中。相当于xml配置方式的 <context:component-scan>。
  **/
 @SpringBootApplication
 @EnableTransactionManagement(mode = AdviceMode.PROXY)

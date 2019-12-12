@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * @Author: Haotian
  * @Date: 2019/12/7 16:35
- * @Parameter : @Component 泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注，用于将普通pojo实例化到spring容器中。
- * @Parameter : @Transactional 基于AOP动态代理的机制实现事务。在类级别，此注释默认应用于声明类及其子类的所有方法。在方法则对应当前方法开启事务支持。
  */
 @Component
 public class FooServiceImpl implements FooService {
