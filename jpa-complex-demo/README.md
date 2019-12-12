@@ -1,5 +1,7 @@
 ## Spring-Boot  JPA  演示
 
+**通过使用 JPA 注解让 Hibernate 为我们进行数据库表的映射创建，通过继承 `CrudRepository` 接口使用其提供的CRUD方法进行数据的相应操作，观察控制台的日志打印了解 JPA 的使用。**
+
 **本次演示首次出现注解如下：**
 
 **Lombok 相关：**
