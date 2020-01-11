@@ -12,5 +12,5 @@
 
 ##### Spring  data mongodb 相关：
 
-1. `@Document`：标识要持久化到MongoDB的哪个表，，默认实体类型
+1. `@Document`：标识要持久化到MongoDB的哪个表，默认实体类型
 2. `@Indexed`：标注该字段为MongoDB的索引字段
