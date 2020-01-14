@@ -18,6 +18,12 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 更据id查询用户信息
+     *
+     * @param ids id数组
+     * @return 用户数据list集合
+     */
     public List<Girl> findByIds(Integer[] ids) {
         return this.userMapper.selectBatchIds( Arrays.asList( ids ) );
     }
