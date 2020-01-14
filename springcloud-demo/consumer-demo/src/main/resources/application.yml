@@ -1,0 +1,13 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: consumer-service #服务消费应用名称
+
+#配置eureka注册服务地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10 #获取服务地址列表间隔时间，默认30秒
