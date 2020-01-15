@@ -12,7 +12,6 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka
     registry-fetch-interval-seconds: 10 #获取服务地址列表间隔时间，默认30秒
 
-
 hystrix:
   command:
     default:
