@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: ${port:9000}
 
 spring:
   #  控制台彩色输出
