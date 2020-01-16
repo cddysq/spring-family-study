@@ -7,4 +7,5 @@
 5. [Spring-Boot 声明式事务](https://github.com/CodeHaotian/spring-family-study/tree/master/declarative-transaction-demo)
 6. [Spring-Boot JPA](https://github.com/CodeHaotian/spring-family-study/tree/master/jpa-complex-demo)
 7. [Spring WebFlux 入门](https://github.com/CodeHaotian/spring-family-study/tree/master/webflux-demo)
+7. [Spring Cloud 入门](https://github.com/CodeHaotian/spring-family-study/tree/master/springcloud-demo)
 
