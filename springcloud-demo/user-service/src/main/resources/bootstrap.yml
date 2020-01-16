@@ -1,0 +1,15 @@
+# bootstrap.yml文件也是Spring Boot的默认配置文件，而且其加载的时间相比于application.yml更早,配合cloud config使用，application.yml里面定义的文件可以实现动态替换。
+spring:
+  cloud:
+    config:
+      name: user  #要与仓库中的配置文件的application保持一致
+      profile: dev #要与仓库中的配置文件的profile保持一致
+      label: master #要与仓库中的配置文件所属的版本（分支）一样
+      discovery:
+        enabled: true #使用配置中心
+        service-id: config-server #配置中心服务名
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
