@@ -10,10 +10,28 @@ spring:
     gateway:
       routes:
         - id: user-service-route #路由id，可以任意
-          uri: http://127.0.0.1:9001  #代理的服务地址
-          # 路由断言： 可以匹配映射路径
-          predicates:
-            - Path=/user/**
+          #uri: http://127.0.0.1:9001  #代理的服务地址
+          uri: lb://user-service #lb动态路由。gateway将使用LoadBalancerClient把user-service通过eureka解析为实际的主机和端口，并进行ribbon负载均衡。
+          predicates: #路由断言： 可以匹配映射路径
+            #- Path=/user/**
+            #- Path=/**
+            - Path=/api/user/**
+          #路由过滤
+          filters:
+            #- PrefixPath=/user #添加请求路径的前缀
+            - StripPrefix=1 #表示过滤1个路径，2表示两个路径，以此类推
+            - MyParam=name #自定义局部过滤器
+          #默认过滤器，对所有路由都生效
+          default-filters:
+            - AddResponseHeader=Author,Haotian #添加响应头
+          globalcors: #跨域处理
+            corsConfigurations:
+              '[/**]':
+                #allowedOrigins: *  #这种写法或者下面的都可以，*表示全部
+                allowedOrigins:
+                  - "http://docs.spring.io"
+                allowedMethods:
+                  - GET
 
 eureka:
   client:
@@ -21,6 +39,18 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka
   instance:
     prefer-ip-address: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+ribbon:
+  ConnectTimeout: 1000
+  ReadTimeout: 2000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
 logging:
   level:
     com.gateway: debug
