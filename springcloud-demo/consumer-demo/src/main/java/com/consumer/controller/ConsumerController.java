@@ -70,5 +70,4 @@ public class ConsumerController {
                 .code( 503 ).message( "对不起，网络太拥挤了" ).build();
     }
 
-
 }

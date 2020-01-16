@@ -2,7 +2,6 @@ package com.consumer.client;
 
 import com.consumer.client.fallback.UserClientFallback;
 import com.consumer.config.FeignConfig;
-import com.consumer.entity.Result;
 import com.consumer.pojo.Girl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

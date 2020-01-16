@@ -2,7 +2,6 @@ package com.consumer.controller;
 
 import com.consumer.client.UserClient;
 import com.consumer.entity.Result;
-import com.consumer.pojo.Girl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +24,6 @@ public class ConsumerFeignController {
         return Result.builder()
                 .code( 200 ).message( "查询用户数据成功" )
                 .data( userClient.findByIds( id ) ).build();
-
     }
 
 }
