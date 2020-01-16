@@ -8,7 +8,12 @@ spring:
       discovery:
         enabled: true #使用配置中心
         service-id: config-server #配置中心服务名
-
+  #rabbitmq的配置信息；如下配置的rabbit都是默认值，其实可以完全不配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     service-url:
