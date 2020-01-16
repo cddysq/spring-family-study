@@ -11,7 +11,9 @@
     <modules>
         <module>user-service</module>
         <module>consumer-demo</module>
-        <!--        <module>eureka-server</module>-->
+        <module>config-service</module>
+        <module>eureka-demo</module>
+        <module>config-service</module>
     </modules>
 
     <parent>
