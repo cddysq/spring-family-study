@@ -1,0 +1,12 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  data:
+    elasticsearch:
+      cluster-name: my-elasticsearch
+      cluster-nodes: localhost:9301,localhost:9302,localhost:9303
+
+logging:
+  level:
+    com.yileaf: debug
