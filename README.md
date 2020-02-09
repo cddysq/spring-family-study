@@ -9,4 +9,4 @@
 7. [Spring WebFlux 入门](https://github.com/CodeHaotian/spring-family-study/tree/master/webflux-demo)
 8. [Spring Cloud 入门](https://github.com/CodeHaotian/spring-family-study/tree/master/springcloud-demo)
 9. [Spring-Boot 整合 RabbitMQ](https://github.com/CodeHaotian/spring-family-study/tree/master/springboot-rabbitmq)
-
+10. [Spring-Boot 整合 ElasticSearch](https://github.com/CodeHaotian/spring-family-study/tree/master/springboot-elasticsearch)
