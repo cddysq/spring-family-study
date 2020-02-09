@@ -1,7 +1,5 @@
 package com.yileaf.es.entity;
 
-import lombok.Data;
-
 /**
  * @Author: Haotian
  * @Date: 2020/2/8 20:11
