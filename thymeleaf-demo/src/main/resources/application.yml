@@ -1,0 +1,7 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+logging:
+  level:
+    com.yileaf.thymeleaf: debug
