@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf演示</title>
+</head>
+<body>
+<!--th:text="${变量名}" 表示 使用thymeleaf获取文本数据-->
+<p th:text="${Hello}"></p>
+<hr>
+
+<!--th:action 请求-->
+<form th:action="@{/demo}">
+    <input th:type="text" th:name="id">
+    <button>提交</button>
+</form>
+<hr>
+
+<!--
+th:each属性用于迭代循环，语法：th:each="obj,iterStat:${objList}"
+迭代对象可以是java.util.List,java.util.Map,数组等...
+
+第一个obj是定义的objList里面的每一个对象，iterStat则是对象参数，
+注意第二个参数是Thymeleaf定义的，规定了如下几个参数：
+    index:当前迭代对象的index（从0开始计算）
+    count: 当前迭代对象的index(从1开始计算)
+    size:被迭代对象的大小
+    current:当前迭代变量
+    even/odd:布尔值，当前循环是否是偶数/奇数（从0开始计算）
+    first:布尔值，当前循环是否是第一个
+    last:布尔值，当前循环是否是最后一个
+-->
+<table border="1">
+    <tr>
+        <td>下标</td>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>活动范围</td>
+    </tr>
+    <tr th:each="user,userStat:${users}">
+        <td>
+            <span th:text="${userStat.index}"></span>
+        </td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.address}"></td>
+    </tr>
+</table>
+<hr>
+<div th:each="map,mapStat:${mapData}">
+    <div th:text="${map}"></div>
+    key:<span th:text="${mapStat.current.key}"></span>&nbsp;&nbsp;
+    value:<span th:text="${mapStat.current.value}"></span><br>
+</div>
+<hr>
+<div th:each="name,nameStat:${names}">
+    <span th:text="${nameStat.count}"></span>:
+    <span th:text="${name}"></span>
+</div>
+<hr>
+
+<!--#..为调用库-->
+<div>
+    <span th:text="${#dates.format(now,'yyyy-MM-dd hh:mm:ss')}"></span>
+</div>
+
+<!--th:if 条件判断-->
+<div>
+    <span th:if="${(age>=18)}">已经成年啦！！！</span>
+</div>
+<hr>
+
+<!--th:include 引入内容-->
+<div th:include="footer::copy"></div>
+</body>
+</html>
