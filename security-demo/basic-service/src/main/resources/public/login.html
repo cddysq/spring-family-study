@@ -4,12 +4,42 @@
     <meta charset="UTF-8">
     <title>用户登录</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/qs/6.5.2/qs.min.js"></script>
 <body>
 <h1>安全框架demo</h1>
-<form action="/login" method="post">
-    <span>用户名称:</span><input type="text" name="uname" id="username"/> <br>
-    <span>用户密码:</span><input type="password" name="pword" id="password"/> <br>
-    <input type="submit" value="登陆">
-</form>
+<div id="app">
+    <form>
+        <span>用户名称:</span><input type="text" v-model="loginInfo.username" name="username" id="username"/> <br>
+        <span>用户密码:</span><input type="password" v-model="loginInfo.password" name="password" id="password"/> <br>
+        <input type="button" @click="login()" value="登陆">
+    </form>
+</div>
+<script>
+    const vue = new Vue({
+        el: '#app',
+        data: {
+            loginInfo: {}//登录信息
+        }, methods: {
+            login() {
+                if (this.loginInfo.username === "" || this.loginInfo.password === "") {
+                    alert('用户名或密码不能为空');
+                    return;
+                }
+                var qs = Qs;
+                axios.post('/login', qs.stringify(this.loginInfo)).then((res) => {
+                    if (res.data.flag) {
+                        //登录成功,跳转到index.html
+                        location.href = res.data.data;
+                    } else {
+                        //失败，提示失败信息
+                        alert(res.data.message);
+                    }
+                });
+            }
+        }
+    });
+</script>
 </body>
 </html>

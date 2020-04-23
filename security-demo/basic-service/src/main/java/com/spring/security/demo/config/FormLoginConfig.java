@@ -1,5 +1,7 @@
 package com.spring.security.demo.config;
 
+import com.spring.security.demo.handler.MyAuthenticationFailureHandler;
+import com.spring.security.demo.handler.MyAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,42 +11,51 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.annotation.Resource;
+
 /**
  * formLogin 表达登录认证
  *
  * @author Haotian
- * @version 1.0.0
+ * @version 1.0.2
  * @date 2020/4/23 19:19
  */
 @Configuration
 public class FormLoginConfig extends WebSecurityConfigurerAdapter {
+    @Resource
+    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+    @Resource
+    private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 禁用跨站csrf攻击防御
         http.csrf().disable()
-            // 开启表单登录
-            .formLogin()
+                // 开启表单登录
+                .formLogin()
                 // 用户未登录时，访问任何资源都转跳到该路径，即登录页面
                 .loginPage( "/login.html" )
                 // 登录表单form中action的地址，也就是处理认证请求的路径
                 .loginProcessingUrl( "/login" )
                 // 登录表单form中用户名输入框input的name名，不修改的话默认是username
-                .usernameParameter("uname")
+                .usernameParameter( "username" )
                 // form中密码输入框input的name名，不修改的话默认是password
-                .passwordParameter("pword")
+                .passwordParameter( "password" )
+                .successHandler( myAuthenticationSuccessHandler )
+                .failureHandler( myAuthenticationFailureHandler )
                 // 登录认证成功后默认转跳的路径
-                .defaultSuccessUrl( "/index" )
-            .and()
+                //.defaultSuccessUrl( "/index" )
+                .and()
                 .authorizeRequests()
                 // 不需要通过登录验证就可以被访问的资源路径
                 .antMatchers( "/login.html", "/login" ).permitAll()
                 // 需要对外暴露的资源路径
-                .antMatchers( "/mock1", "mock2" )
-                    // user角色和admin角色都可以访问
-                    .hasAnyAuthority( "ROLE_user", "ROLE_admin" )
+                .antMatchers( "/mock1", "/mock2" )
+                // user角色和admin角色都可以访问
+                .hasAnyAuthority( "ROLE_user", "ROLE_admin" )
                 .antMatchers( "/systemlog", "/user" )
-                    // admin角色可以访问
-                    .hasAnyRole( "admin" )
+                // admin角色可以访问
+                .hasAnyRole( "admin" )
                 .anyRequest().authenticated();
     }
 
@@ -52,24 +63,25 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser( "user" )
-                .password(passwordEncoder().encode( "123456" )  )
+                .password( passwordEncoder().encode( "123456" ) )
                 .roles( "user" )
-            .and()
+                .and()
                 .withUser( "admin" )
-                .password(passwordEncoder().encode( "123456"))
+                .password( passwordEncoder().encode( "123456" ) )
                 .roles( "admin" )
-            .and()
+                .and()
                 // 配置BCrypt编码器
                 .passwordEncoder( passwordEncoder() );
     }
+
     @Override
     public void configure(WebSecurity web) {
         // 将项目中静态资源路径开放出来
-        web.ignoring().antMatchers( "/css/**", "/fonts/**", "/img/**", "/js/**");
+        web.ignoring().antMatchers( "/css/**", "/fonts/**", "/img/**", "/js/**" );
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
