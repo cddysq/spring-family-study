@@ -1,0 +1,32 @@
+server:
+  port: 8888
+  servlet:
+    session:
+      timeout: 10s
+      cookie:
+        http-only: true
+        secure: false
+spring:
+  output:
+    ansi:
+      enabled: always
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://192.168.200.129:3306/chongba_order_trade
+    username: root
+  thymeleaf:
+    cache: false # 缓存配置 开发阶段应该配置为false 因为经常会改
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    encoding: UTF-8
+    mode: HTML5
+logging:
+  level:
+    root: info
+  file:
+    path: /logs
