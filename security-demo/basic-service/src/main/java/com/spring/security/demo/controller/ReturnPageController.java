@@ -2,7 +2,6 @@ package com.spring.security.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * 页面跳转
@@ -13,12 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class ReturnPageController {
-    // 登录
-    @GetMapping("/login")
+    /**
+     * 由于Spring security 会自动拦截登录路径，并不需要群殴手动编写跳转方法
+     */
+    /*@GetMapping("/login")
     public String index(String username, String password) {
         return "index";
-    }
-
+    }*/
     @GetMapping("/index")
     public String index() {
         return "index";

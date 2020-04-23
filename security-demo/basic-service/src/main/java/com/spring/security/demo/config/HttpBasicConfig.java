@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @version 1.0.0
  * @date 2020/4/23 18:55
  */
-@Configuration
+//@Configuration
 public class HttpBasicConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity auth) throws Exception {
