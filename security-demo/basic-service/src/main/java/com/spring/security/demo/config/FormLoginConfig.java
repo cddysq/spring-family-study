@@ -2,6 +2,7 @@ package com.spring.security.demo.config;
 
 import com.spring.security.demo.handler.MyAuthenticationFailureHandler;
 import com.spring.security.demo.handler.MyAuthenticationSuccessHandler;
+import com.spring.security.demo.handler.MyExpiredSessionStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -64,8 +65,15 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy( SessionCreationPolicy.IF_REQUIRED )
                     // 非法或超时session跳转页面
                     .invalidSessionUrl( "/login.html" )
-                    // session会话保护，同一个cookies的SESSIONID用户，每次登录验证将创建一个新的HTTP会话，旧的HTTP会话将无效，并且旧会话的属性将被复制
-                    .sessionFixation().migrateSession();
+                // session会话保护，同一个cookies的SESSIONID用户，每次登录验证将创建一个新的HTTP会话，旧的HTTP会话将无效，并且旧会话的属性将被复制
+                .sessionFixation().migrateSession()
+                // 设置同一个用户最大的登录数量
+                .maximumSessions( 1 )
+                    // true表示已经登录就不予许再次登录，false表示允许再次登录但是之前的登录会下线。
+                    .maxSessionsPreventsLogin( false )
+                    // 设置下线处理策略
+                    .expiredSessionStrategy(new MyExpiredSessionStrategy() );
+
     }
 
     @Override
