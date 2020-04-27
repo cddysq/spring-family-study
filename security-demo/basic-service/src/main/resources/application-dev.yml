@@ -2,10 +2,10 @@ server:
   port: 8888
   servlet:
     session:
-      timeout: 10s
+      timeout: 10s # session超时配置 默认一分钟，低于配置不生效，采用默认
       cookie:
-        http-only: true
-        secure: false
+        http-only: true # 浏览器脚本将无法访问cookie
+        secure: false # 为true，则仅通过HTTPS连接发送cookie，HTTP无法携带cookie
 spring:
   output:
     ansi:

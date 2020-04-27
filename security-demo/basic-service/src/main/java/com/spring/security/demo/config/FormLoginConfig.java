@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -31,32 +32,40 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // 禁用跨站csrf攻击防御
         http.csrf().disable()
-                // 开启表单登录
-                .formLogin()
+            // 开启表单登录
+            .formLogin()
                 // 用户未登录时，访问任何资源都转跳到该路径，即登录页面
                 .loginPage( "/login.html" )
                 // 登录表单form中action的地址，也就是处理认证请求的路径
                 .loginProcessingUrl( "/login" )
-                // 登录表单form中用户名输入框input的name名，不修改的话默认是username
-                .usernameParameter( "username" )
-                // form中密码输入框input的name名，不修改的话默认是password
-                .passwordParameter( "password" )
+                    // 登录表单form中用户名输入框input的name名，不修改的话默认是username
+                    .usernameParameter( "username" )
+                    // form中密码输入框input的name名，不修改的话默认是password
+                    .passwordParameter( "password" )
                 .successHandler( myAuthenticationSuccessHandler )
                 .failureHandler( myAuthenticationFailureHandler )
-                // 登录认证成功后默认转跳的路径
-                //.defaultSuccessUrl( "/index" )
-                .and()
+            // 登录认证成功后默认转跳的路径
+            //.defaultSuccessUrl( "/index" )
+            .and()
                 .authorizeRequests()
-                // 不需要通过登录验证就可以被访问的资源路径
-                .antMatchers( "/login.html", "/login" ).permitAll()
-                // 需要对外暴露的资源路径
-                .antMatchers( "/mock1", "/mock2" )
-                // user角色和admin角色都可以访问
-                .hasAnyAuthority( "ROLE_user", "ROLE_admin" )
-                .antMatchers( "/systemlog", "/user" )
-                // admin角色可以访问
-                .hasAnyRole( "admin" )
-                .anyRequest().authenticated();
+                    // 不需要通过登录验证就可以被访问的资源路径
+                    .antMatchers( "/login.html", "/login" ).permitAll()
+                    // 需要对外暴露的资源路径
+                    .antMatchers( "/mock1", "/mock2" )
+                    // user角色和admin角色都可以访问
+                    .hasAnyAuthority( "ROLE_user", "ROLE_admin" )
+                    .antMatchers( "/systemlog", "/user" )
+                    // admin角色可以访问
+                    .hasAnyRole( "admin" )
+                .anyRequest().authenticated()
+            .and()
+                .sessionManagement()
+                    // Session安全策略，Spring Security在需要时才创建session（默认）
+                    .sessionCreationPolicy( SessionCreationPolicy.IF_REQUIRED )
+                    // 非法或超时session跳转页面
+                    .invalidSessionUrl( "/login.html" )
+                    // session会话保护，同一个cookies的SESSIONID用户，每次登录验证将创建一个新的HTTP会话，旧的HTTP会话将无效，并且旧会话的属性将被复制
+                    .sessionFixation().migrateSession();
     }
 
     @Override
@@ -65,11 +74,11 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
                 .withUser( "user" )
                 .password( passwordEncoder().encode( "123456" ) )
                 .roles( "user" )
-                .and()
+            .and()
                 .withUser( "admin" )
                 .password( passwordEncoder().encode( "123456" ) )
                 .roles( "admin" )
-                .and()
+            .and()
                 // 配置BCrypt编码器
                 .passwordEncoder( passwordEncoder() );
     }
