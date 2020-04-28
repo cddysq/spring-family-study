@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * formLogin 表达登录认证
  *
  * @author Haotian
- * @version 1.0.3
+ * @version 1.0.4
  * @date 2020/4/23 19:19
  */
 @Configuration
@@ -54,14 +54,10 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     // 不需要通过登录验证就可以被访问的资源路径
                     .antMatchers( "/login.html", "/login" ).permitAll()
-                    // 需要对外暴露的资源路径
-                    .antMatchers( "/mock1", "/mock2" )
-                    // user角色和admin角色都可以访问
-                    .hasAnyAuthority( "ROLE_user", "ROLE_admin" )
-                    .antMatchers( "/systemlog", "/user" )
-                    // admin角色可以访问
-                    .hasAnyRole( "admin" )
-                .anyRequest().authenticated()
+                    // 登录即可访问的路径
+                    .antMatchers( "/index" ).authenticated()
+                    // 其他路径动态授权
+                    .anyRequest().access( "@rabcService.hasPermission(request,authentication)" )
             .and()
                 .sessionManagement()
                     // Session安全策略，Spring Security在需要时才创建session（默认）
