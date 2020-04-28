@@ -1,7 +1,12 @@
 package com.spring.security.demo.controller;
 
+import com.spring.security.demo.model.PersonDemo;
+import com.spring.security.demo.service.DemoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 页面跳转
@@ -19,6 +24,13 @@ public class ReturnPageController {
     public String index(String username, String password) {
         return "index";
     }*/
+
+    private final DemoService demoService;
+
+    public ReturnPageController(DemoService demoService) {
+        this.demoService = demoService;
+    }
+
     @GetMapping("/index")
     public String index() {
         return "index";
@@ -36,6 +48,11 @@ public class ReturnPageController {
 
     @GetMapping("/mock1")
     public String mock1() {
+        demoService.findAll();
+        demoService.findOne();
+        demoService.delete( Arrays.asList( 1,2 ) );
+        List<PersonDemo> allPD = demoService.findAllPD();
+        System.out.println(allPD);
         return "mock1";
     }
 

@@ -7,6 +7,7 @@ import com.spring.security.demo.service.impl.MyUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,10 +21,11 @@ import javax.annotation.Resource;
  * formLogin 表达登录认证
  *
  * @author Haotian
- * @version 1.0.4
+ * @version 1.0.5
  * @date 2020/4/23 19:19
  */
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true) // 启用方法级别安全注解
 public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
