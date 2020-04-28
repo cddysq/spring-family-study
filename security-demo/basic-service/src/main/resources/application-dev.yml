@@ -15,8 +15,8 @@ spring:
     time-zone: GMT+8
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 123456
-    url: jdbc:mysql://192.168.200.129:3306/chongba_order_trade
+    password: AngelBeats
+    url: jdbc:mysql://127.0.0.1:3306/spring_security?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
   thymeleaf:
     cache: false # 缓存配置 开发阶段应该配置为false 因为经常会改
