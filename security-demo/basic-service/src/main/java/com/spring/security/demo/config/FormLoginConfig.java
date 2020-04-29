@@ -21,7 +21,7 @@ import javax.annotation.Resource;
  * formLogin 表达登录认证
  *
  * @author Haotian
- * @version 1.0.5
+ * @version 1.0.6
  * @date 2020/4/23 19:19
  */
 @Configuration
@@ -36,8 +36,16 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 禁用跨站csrf攻击防御
-        http.csrf().disable()
+            // 开启记住密码
+        http.rememberMe(  )
+                // 设置from表单“记住密码”勾选框的参数名称
+                .rememberMeParameter( "remember" )
+                // 设置了保存在浏览器端的cookie令牌名称
+                .rememberMeCookieName( "remember-me-cookie" )
+                // 设置token的有效期，即多长时间内可以免除重复登录，单位是秒。不修改配置情况下默认是2周。
+                .tokenValiditySeconds( 2 * 24 * 60 * 60 )
+            // 禁用跨站csrf攻击防御
+            .and().csrf().disable()
             // 开启表单登录
             .formLogin()
                 // 用户未登录时，访问任何资源都转跳到该路径，即登录页面

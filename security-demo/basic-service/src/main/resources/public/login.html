@@ -13,6 +13,7 @@
     <form>
         <span>用户名称:</span><input type="text" v-model="loginInfo.username" name="username" id="username"/> <br>
         <span>用户密码:</span><input type="password" v-model="loginInfo.password" name="password" id="password"/> <br>
+        <input type="checkbox" v-model="loginInfo.remember" v-on:click="alocked(loginInfo.remember)" />记住密码
         <input type="button" @click="login()" value="登陆">
     </form>
 </div>
@@ -20,8 +21,14 @@
     const vue = new Vue({
         el: '#app',
         data: {
-            loginInfo: {}//登录信息
+            //登录信息
+            loginInfo: {
+                remember: false
+            },
         }, methods: {
+            alocked: function (item) {
+                item.state = !item.state;
+            },
             login() {
                 if (this.loginInfo.username === "" || this.loginInfo.password === "") {
                     alert('用户名或密码不能为空');
