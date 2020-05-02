@@ -3,6 +3,7 @@ package com.spring.security.demo.config;
 import com.spring.security.demo.handler.MyAuthenticationFailureHandler;
 import com.spring.security.demo.handler.MyAuthenticationSuccessHandler;
 import com.spring.security.demo.handler.MyExpiredSessionStrategy;
+import com.spring.security.demo.handler.MyLogoutSuccessHandler;
 import com.spring.security.demo.service.impl.MyUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +25,7 @@ import javax.sql.DataSource;
  * formLogin 表达登录认证
  *
  * @author Haotian
- * @version 1.0.7
+ * @version 1.0.8
  * @date 2020/4/23 19:19
  */
 @Configuration
@@ -34,6 +35,8 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
     @Resource
     private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
+    @Resource
+    private MyLogoutSuccessHandler myLogoutSuccessHandler;
     @Resource
     private MyUserDetailsServiceImpl myUserDetailsServiceImpl;
     @Resource
@@ -45,8 +48,8 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
         http.logout()
                 // 指定退出请求的默认路径
                 .logoutUrl( "/signout" )
-                // 指定logoutSuccessUrl配置，来显式指定退出之后的跳转页面
-                .logoutSuccessUrl( "/logoutSuccess.html" )
+                // 指定退出成功执行的处理方法
+                .logoutSuccessHandler( myLogoutSuccessHandler)
                 // deleteCookies删除指定的cookie，参数为cookie的名称
                 .deleteCookies( "JSESSIONID" )
                 // 开启记住密码
