@@ -14,8 +14,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 /**
  * formLogin 表达登录认证
@@ -33,6 +36,8 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
     @Resource
     private MyUserDetailsServiceImpl myUserDetailsServiceImpl;
+    @Resource
+    private DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -44,6 +49,8 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
                 .rememberMeCookieName( "remember-me-cookie" )
                 // 设置token的有效期，即多长时间内可以免除重复登录，单位是秒。不修改配置情况下默认是2周。
                 .tokenValiditySeconds( 2 * 24 * 60 * 60 )
+                // 设置token持久化仓库信息
+                .tokenRepository( persistentTokenRepository() )
             // 禁用跨站csrf攻击防御
             .and().csrf().disable()
             // 开启表单登录
@@ -100,5 +107,12 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource( dataSource );
+        return jdbcTokenRepository;
     }
 }
