@@ -24,7 +24,7 @@ import javax.sql.DataSource;
  * formLogin 表达登录认证
  *
  * @author Haotian
- * @version 1.0.6
+ * @version 1.0.7
  * @date 2020/4/23 19:19
  */
 @Configuration
@@ -41,8 +41,16 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-            // 开启记住密码
-        http.rememberMe(  )
+           // 开启退出功能
+        http.logout()
+                // 指定退出请求的默认路径
+                .logoutUrl( "/signout" )
+                // 指定logoutSuccessUrl配置，来显式指定退出之后的跳转页面
+                .logoutSuccessUrl( "/logoutSuccess.html" )
+                // deleteCookies删除指定的cookie，参数为cookie的名称
+                .deleteCookies( "JSESSIONID" )
+                // 开启记住密码
+            .and().rememberMe(  )
                 // 设置from表单“记住密码”勾选框的参数名称
                 .rememberMeParameter( "remember" )
                 // 设置了保存在浏览器端的cookie令牌名称
@@ -70,7 +78,7 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .authorizeRequests()
                     // 不需要通过登录验证就可以被访问的资源路径
-                    .antMatchers( "/login.html", "/login" ).permitAll()
+                    .antMatchers( "/login.html", "/login","/logoutSuccess.html" ).permitAll()
                     // 登录即可访问的路径
                     .antMatchers( "/index" ).authenticated()
                     // 其他路径动态授权
