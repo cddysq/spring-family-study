@@ -1,5 +1,6 @@
 package com.spring.security.demo.config;
 
+import com.spring.security.demo.filter.CaptchaCodeFilter;
 import com.spring.security.demo.handler.MyAuthenticationFailureHandler;
 import com.spring.security.demo.handler.MyAuthenticationSuccessHandler;
 import com.spring.security.demo.handler.MyExpiredSessionStrategy;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -25,7 +27,7 @@ import javax.sql.DataSource;
  * formLogin 表达登录认证
  *
  * @author Haotian
- * @version 1.0.8
+ * @version 1.0.9
  * @date 2020/4/23 19:19
  */
 @Configuration
@@ -36,6 +38,8 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
     @Resource
+    private CaptchaCodeFilter captchaCodeFilter;
+    @Resource
     private MyLogoutSuccessHandler myLogoutSuccessHandler;
     @Resource
     private MyUserDetailsServiceImpl myUserDetailsServiceImpl;
@@ -44,8 +48,10 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-           // 开启退出功能
-        http.logout()
+           // 指定登录过滤器之前执行验证校验
+        http.addFilterBefore( captchaCodeFilter, UsernamePasswordAuthenticationFilter.class )
+            // 开启退出功能
+            .logout()
                 // 指定退出请求的默认路径
                 .logoutUrl( "/signout" )
                 // 指定退出成功执行的处理方法
