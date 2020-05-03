@@ -81,7 +81,7 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .authorizeRequests()
                     // 不需要通过登录验证就可以被访问的资源路径
-                    .antMatchers( "/login.html", "/login","/logoutSuccess.html" ).permitAll()
+                    .antMatchers( "/login.html", "/login","/logoutSuccess.html","/captcha" ).permitAll()
                     // 登录即可访问的路径
                     .antMatchers( "/index" ).authenticated()
                     // 其他路径动态授权
