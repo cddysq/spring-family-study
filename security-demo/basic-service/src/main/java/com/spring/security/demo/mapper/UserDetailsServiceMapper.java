@@ -17,25 +17,25 @@ public interface UserDetailsServiceMapper {
     /**
      * 根据用户名查询用户信息
      *
-     * @param username 用户名
+     * @param username 用户名或用户手机号
      * @return 用户信息
      */
     @Select("SELECT username,password,enabled\n" +
             "FROM sys_user u\n" +
-            "WHERE u.username = #{username}")
+            "WHERE u.username = #{username} or u.phone = #{username}")
     MyUserDetails findByUserName(@Param("username") String username);
 
     /**
      * 根据用户名查询用户角色
      *
-     * @param username 用户名
+     * @param username 用户名或用户手机号
      * @return 用户角色列表
      */
     @Select("SELECT role_code\n" +
             "FROM sys_role r\n" +
             "LEFT JOIN sys_user_role ur ON r.id = ur.role_id\n" +
             "LEFT JOIN sys_user u ON u.id = ur.user_id\n" +
-            "WHERE u.username = #{username}")
+            "WHERE u.username = #{username} or u.phone = #{username}")
     List<String> findRoleByUserName(@Param("username") String username);
 
     /**

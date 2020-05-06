@@ -12,4 +12,8 @@ public class Constants {
      * 图形验证码session key
      */
     public static final String CAPTCHA_SESSION_KEY = "captcha_key";
+    /**
+     * 手机验证码session key
+     */
+    public static final String SMS_CODE_SESSION_KEY = "sms_code_key";
 }
