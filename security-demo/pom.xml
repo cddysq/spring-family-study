@@ -22,6 +22,7 @@
         <java.version>11</java.version>
         <fastjson.version>1.2.68</fastjson.version>
         <hutool.version>5.3.2</hutool.version>
+        <httpclient.version>4.4.1</httpclient.version>
     </properties>
 
     <dependencies>
@@ -73,6 +74,11 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
         </dependency>
     </dependencies>
 
