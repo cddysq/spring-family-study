@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2020/5/9 12:16
  */
 @Data
-public class GetMapResult {
+public class GetMapFenceResult {
     /**
      * 返回内容消息体
      */

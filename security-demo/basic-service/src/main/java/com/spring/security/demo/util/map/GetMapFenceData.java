@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2020/5/9 12:07
  */
 @Data
-public class GetMapData {
+public class GetMapFenceData {
     /**
      * 围栏id
      */

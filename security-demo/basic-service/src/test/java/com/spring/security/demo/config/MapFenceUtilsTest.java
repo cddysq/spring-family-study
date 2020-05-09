@@ -2,9 +2,9 @@ package com.spring.security.demo.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.spring.security.demo.util.map.GetMapResult;
+import com.spring.security.demo.util.map.GetMapFenceResult;
 import com.spring.security.demo.util.map.MapFenceData;
-import com.spring.security.demo.util.map.MapUtils;
+import com.spring.security.demo.util.map.MapFenceUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,9 +22,9 @@ import java.util.ArrayList;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MapUtilsTest {
+public class MapFenceUtilsTest {
     @Resource
-    private MapUtils mapUtil;
+    private MapFenceUtils mapUtil;
 
     @Test
     public void insertMapTest() {
@@ -56,7 +56,7 @@ public class MapUtilsTest {
 
     @Test
     public void selectMap() {
-        GetMapResult map = mapUtil.selectMap( "" );
+        GetMapFenceResult map = mapUtil.selectMap( "" );
         System.out.println( JSON.toJSONString( map, SerializerFeature.PrettyFormat ) );
     }
 

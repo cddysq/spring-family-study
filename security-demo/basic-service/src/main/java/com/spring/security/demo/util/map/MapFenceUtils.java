@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Component
-public class MapUtils {
+public class MapFenceUtils {
     @Resource
     private RestTemplate restTemplate;
     /**
@@ -55,7 +55,7 @@ public class MapUtils {
         HttpHeaders httpHeaders = this.setHttpHeaders( MediaType.APPLICATION_JSON );
         // 封装请求
         HttpEntity<String> formEntity = new HttpEntity<String>( JSON.toJSONString( insertMapFenceData ), httpHeaders );
-        MapResult result = restTemplate.postForObject( GAO_DE_MAP_URL, formEntity, MapResult.class );
+        MapFenceResult result = restTemplate.postForObject( GAO_DE_MAP_URL, formEntity, MapFenceResult.class );
         if (Objects.isNull( result )) {
             throw new RuntimeException( "添加电子围栏失败" );
         }
@@ -76,14 +76,14 @@ public class MapUtils {
      * @param gid 围栏全局id 为空默认查询全部
      * @return 电子围栏结果解析类
      */
-    public GetMapResult selectMap(String gid) {
-        GetMapResult result = null;
+    public GetMapFenceResult selectMap(String gid) {
+        GetMapFenceResult result = null;
         if (StrUtil.isBlank( gid )) {
             // 未传值查询所有
-            result = restTemplate.getForObject( GAO_DE_MAP_URL, GetMapResult.class );
+            result = restTemplate.getForObject( GAO_DE_MAP_URL, GetMapFenceResult.class );
         } else {
             String newUrl = GAO_DE_MAP_URL + "&gid={gid}";
-            result = restTemplate.getForObject( newUrl, GetMapResult.class, gid );
+            result = restTemplate.getForObject( newUrl, GetMapFenceResult.class, gid );
         }
         if (Objects.isNull( result )) {
             throw new RuntimeException( "查询电子围栏失败" );
@@ -113,7 +113,7 @@ public class MapUtils {
         HttpHeaders httpHeaders = this.setHttpHeaders( MediaType.APPLICATION_JSON );
         // 封装请求
         HttpEntity<String> formEntity = new HttpEntity<String>( JSON.toJSONString( insertMapFenceData ), httpHeaders );
-        MapResult result = restTemplate.patchForObject( newUrl, formEntity, MapResult.class );
+        MapFenceResult result = restTemplate.patchForObject( newUrl, formEntity, MapFenceResult.class );
         if (Objects.isNull( result )) {
             throw new RuntimeException( "更新电子围栏失败" );
         }
@@ -135,8 +135,8 @@ public class MapUtils {
     public void deleteMap(String gid) {
         String newUrl = GAO_DE_MAP_URL + "&gid=" + gid;
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<MapResult> result = restTemplate.exchange( newUrl, HttpMethod.DELETE, null, MapResult.class );
-        MapResult msg = result.getBody();
+        ResponseEntity<MapFenceResult> result = restTemplate.exchange( newUrl, HttpMethod.DELETE, null, MapFenceResult.class );
+        MapFenceResult msg = result.getBody();
         if (Objects.isNull( msg )) {
             throw new RuntimeException( "删除地理围栏失败" );
         }

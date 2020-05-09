@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2020/5/9 9:38
  */
 @Data
-public class MapResult {
+public class MapFenceResult {
     /**
      * 返回数据内容消息体
      */
