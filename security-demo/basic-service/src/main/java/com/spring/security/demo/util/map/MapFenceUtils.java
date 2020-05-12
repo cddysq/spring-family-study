@@ -63,6 +63,10 @@ public class MapFenceUtils {
             log.error( "add map exception {}", result );
             throw new RuntimeException( result.getErrmsg() );
         }
+        if (Objects.isNull( result.getData() )) {
+            log.error( "add map exception {}", result );
+            throw new RuntimeException( "添加电子围栏失败" );
+        }
         if (StrUtil.isBlank( result.getData().getGid() )) {
             log.error( "add map exception {}", result );
             throw new RuntimeException( result.getData().getMessage() );
@@ -89,11 +93,15 @@ public class MapFenceUtils {
             throw new RuntimeException( "查询电子围栏失败" );
         }
         if (result.getErrcode() != SUCCESS_STATUS) {
-            log.error( "add map exception {}", result );
+            log.error( "get map exception gid={},message={}", gid, result );
             throw new RuntimeException( result.getErrmsg() );
         }
+        if (Objects.isNull( result.getData() )) {
+            log.error( "get map exception gid={},message={}", gid, result );
+            throw new RuntimeException( "查询电子围栏失败" );
+        }
         if (CollUtil.isEmpty( result.getData().getRs_list() )) {
-            log.error( "get map exception gid={}", gid );
+            log.error( "get map exception gid={},message={}", gid, result );
             throw new RuntimeException( "暂未查询到对应电子围栏记录" );
         }
         return result;
@@ -121,6 +129,10 @@ public class MapFenceUtils {
             log.error( "update map exception gid={} data={} ", gid, insertMapFenceData );
             throw new RuntimeException( result.getErrmsg() );
         }
+        if (Objects.isNull( result.getData() )) {
+            log.error( "update map exception gid={} data={} ", gid, insertMapFenceData );
+            throw new RuntimeException( "更新电子围栏失败" );
+        }
         if (result.getData().getStatus() != SUCCESS_STATUS) {
             log.error( "update map exception gid={} data={} ", gid, insertMapFenceData );
             throw new RuntimeException( result.getData().getMessage() );
@@ -141,8 +153,12 @@ public class MapFenceUtils {
             throw new RuntimeException( "删除地理围栏失败" );
         }
         if (msg.getErrcode() != SUCCESS_STATUS) {
-            log.error( "delete map exception gid={}", gid );
+            log.error( "delete map exception gid={},message={}", gid, msg );
             throw new RuntimeException( msg.getErrmsg() );
+        }
+        if (Objects.isNull( msg.getData() )) {
+            log.error( "delete map exception gid={},message={}", gid, msg );
+            throw new RuntimeException( "删除地理围栏失败" );
         }
         if (msg.getData().getStatus() != SUCCESS_STATUS) {
             log.error( "delete map exception gid={},message={}", gid, msg );
