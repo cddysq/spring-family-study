@@ -2,8 +2,6 @@ package com.spring.security.demo.util.map;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * 插入电子围栏数据封装类
  *
@@ -16,12 +14,10 @@ public class InsertMapFenceData {
     /**
      * 围栏名
      */
-    @NotNull
     private String name;
     /**
      * 多边形围栏坐标点，格式(lon1,lat1;lon2,lat2;lon3,lat3（3<=点个数<=5000）。多边形围栏外接圆半径最大为5000米。)
      */
-    @NotNull
     private String points;
     /**
      * 围栏监控状态
