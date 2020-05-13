@@ -29,17 +29,15 @@ public class MapFenceUtilsTest {
     @Test
     public void insertMapTest() {
         MapFenceData mapFenceData = new MapFenceData();
-        mapFenceData.setName( "测试添加围栏1" );
+        mapFenceData.setName( "电子科技大学" );
         mapFenceData.setRepeat( "Mon,Tues,Wed,Thur,Fri,Sat,Sun" );
-        mapFenceData.setFixed_date( "2020-05-09;2020-05-10;2020-05-11" );
         ArrayList<String> list = new ArrayList<>();
-        list.add( "104.147018,30.807318" );
-        list.add( "104.150881,30.809125" );
-        list.add( "104.150366,30.80378" );
-        list.add( "104.149121,30.821557" );
+        list.add( "104.140579,30.629924" );
+        list.add( "104.067795,30.606288" );
+        list.add( "104.078781,30.642331" );
         mapFenceData.setPoints( list );
-        String s = mapUtil.addMap( mapFenceData );
         System.out.println( JSON.toJSONString( mapFenceData, SerializerFeature.PrettyFormat ) );
+        String s = mapUtil.addMap( mapFenceData );
     }
 
     @Test
@@ -71,6 +69,6 @@ public class MapFenceUtilsTest {
 
     @Test
     public void delete() {
-        mapUtil.deleteMap( "2992c804-f65b-4e01-9aec-ec28dbb63c53" );
+        mapUtil.deleteMap( "8d492219-96a5-4757-b15e-faa70a936c2d" );
     }
 }
