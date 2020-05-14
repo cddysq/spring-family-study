@@ -1,5 +1,6 @@
 package com.spring.security.demo.config;
 
+import cn.hutool.core.convert.Convert;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.spring.security.demo.util.map.GetMapFenceResult;
@@ -69,6 +70,15 @@ public class MapFenceUtilsTest {
 
     @Test
     public void delete() {
-        mapUtil.deleteMap( "8d492219-96a5-4757-b15e-faa70a936c2d" );
+        mapUtil.deleteMap( "e8101b46-c54d-45fe-bbaa-36458e890624" );
+    }
+
+    @Test
+    public void demo() {
+        String ids = "123,168,175,194";
+        String[] array = Convert.toStrArray( ids );
+        for (String s : array) {
+            System.out.println( s );
+        }
     }
 }
