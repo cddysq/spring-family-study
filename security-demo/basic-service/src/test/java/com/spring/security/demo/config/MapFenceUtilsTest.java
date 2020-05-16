@@ -72,13 +72,4 @@ public class MapFenceUtilsTest {
     public void delete() {
         mapUtil.deleteMap( "e8101b46-c54d-45fe-bbaa-36458e890624" );
     }
-
-    @Test
-    public void demo() {
-        String ids = "123,168,175,194";
-        String[] array = Convert.toStrArray( ids );
-        for (String s : array) {
-            System.out.println( s );
-        }
-    }
 }
