@@ -1,11 +1,7 @@
-package com.spring.security.demo.config;
+package com.yileaf.utils.mapfence;
 
-import cn.hutool.core.convert.Convert;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.spring.security.demo.util.map.GetMapFenceResult;
-import com.spring.security.demo.util.map.MapFenceData;
-import com.spring.security.demo.util.map.MapFenceUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 
 /**
- * 高德地图工具类测试
+ * 高德地图电子围栏工具类测试
  *
  * @author Haotian
  * @version 1.0.0
@@ -30,7 +26,7 @@ public class MapFenceUtilsTest {
     @Test
     public void insertMapTest() {
         MapFenceData mapFenceData = new MapFenceData();
-        mapFenceData.setName( "电子科技大学" );
+        mapFenceData.setName( "add" );
         mapFenceData.setRepeat( "Mon,Tues,Wed,Thur,Fri,Sat,Sun" );
         ArrayList<String> list = new ArrayList<>();
         list.add( "104.140579,30.629924" );
@@ -39,18 +35,7 @@ public class MapFenceUtilsTest {
         mapFenceData.setPoints( list );
         System.out.println( JSON.toJSONString( mapFenceData, SerializerFeature.PrettyFormat ) );
         String s = mapUtil.addMap( mapFenceData );
-    }
-
-    @Test
-    public void test() {
-        ArrayList<String> list = new ArrayList<>();
-        list.add( "104.147018,30.807318" );
-        list.add( "104.150881,30.809125" );
-        list.add( "104.150366,30.80378" );
-        list.add( "104.149121,30.821557" );
-        System.out.println( list.toString() );
-        String s = String.join( ";", list );
-        System.out.println( s );
+        System.out.println( "gid=" + s );
     }
 
     @Test
@@ -62,14 +47,14 @@ public class MapFenceUtilsTest {
     @Test
     public void updateMap() {
         MapFenceData mapFenceData = new MapFenceData();
-        mapFenceData.setName( "修改测试" );
+        mapFenceData.setName( "update" );
         //insertMapData.setPoints( "104.147018,30.807318;104.150366,30.80378;104.150881,30.809125;104.149121,30.823567" );
         mapFenceData.setRepeat( "Mon,Tues,Wed,Thur,Fri,Sat" );
-        mapUtil.updateMap( mapFenceData, "d2e5477a-bfdf-4c28-8906-d679a607046c" );
+        mapUtil.updateMap( mapFenceData, "7e1d95bf-e3c9-4757-8861-6bb35a8a4ed1" );
     }
 
     @Test
     public void delete() {
-        mapUtil.deleteMap( "e8101b46-c54d-45fe-bbaa-36458e890624" );
+        mapUtil.deleteMap( "e2857f06-cec0-4e06-9cc3-86866ad7e04c" );
     }
 }

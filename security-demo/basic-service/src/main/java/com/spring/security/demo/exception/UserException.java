@@ -13,7 +13,7 @@ import lombok.Getter;
 public class UserException extends RuntimeException {
     private static final long serialVersionUID = 8482500389681789675L;
 
-    private ExceptionMessage exceptionMessage;
+    private final ExceptionMessage exceptionMessage;
 
     public UserException(ExceptionMessage exceptionMessage) {
         this.exceptionMessage = exceptionMessage;

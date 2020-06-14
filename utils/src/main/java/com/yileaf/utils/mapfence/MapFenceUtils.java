@@ -1,4 +1,4 @@
-package com.spring.security.demo.util.map;
+package com.yileaf.utils.mapfence;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
@@ -27,7 +27,7 @@ public class MapFenceUtils {
     /**
      * 高德地图请求key
      */
-    private static final String GAO_DE_MAP_KEY = "";
+    private static final String GAO_DE_MAP_KEY = "40e724f42168096b0f68134c548df4f6";
     /**
      * 高德地图请求地址
      */

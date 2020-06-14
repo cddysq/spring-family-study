@@ -1,4 +1,4 @@
-package com.spring.security.demo.config;
+package com.yileaf.utils.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
