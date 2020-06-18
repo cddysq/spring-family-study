@@ -48,7 +48,6 @@ public class MapFenceUtilsTest {
     public void updateMap() {
         MapFenceData mapFenceData = new MapFenceData();
         mapFenceData.setName( "update" );
-        //insertMapData.setPoints( "104.147018,30.807318;104.150366,30.80378;104.150881,30.809125;104.149121,30.823567" );
         mapFenceData.setRepeat( "Mon,Tues,Wed,Thur,Fri,Sat" );
         mapUtil.updateMap( mapFenceData, "7e1d95bf-e3c9-4757-8861-6bb35a8a4ed1" );
     }
