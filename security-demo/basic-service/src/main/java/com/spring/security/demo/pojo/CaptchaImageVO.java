@@ -3,7 +3,6 @@ package com.spring.security.demo.pojo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 /**
  * 图形验证码信息对象
  *
