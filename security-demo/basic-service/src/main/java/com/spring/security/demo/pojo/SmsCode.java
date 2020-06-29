@@ -1,7 +1,8 @@
 package com.spring.security.demo.pojo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import java.time.LocalDateTime;
 
 /**
  * 手机验证码信息对象
@@ -11,15 +12,30 @@ import lombok.EqualsAndHashCode;
  * @date 2020/5/6 10:54
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class SmsCode extends BaseCode {
+public class SmsCode {
     /**
      * 手机号
      */
     private String phone;
 
+    /**
+     * 验证码
+     */
+    private String code;
+
+    /**
+     * 验证码的过期时间
+     */
+    private LocalDateTime expireTime;
+
     public SmsCode(String code, int expireAfterSeconds, String phone) {
-        super( code, expireAfterSeconds );
+        this.code = code;
+        this.expireTime = LocalDateTime.now().plusSeconds( expireAfterSeconds );
         this.phone = phone;
     }
+
+    public boolean isExpired() {
+        return LocalDateTime.now().isAfter( expireTime );
+    }
+
 }

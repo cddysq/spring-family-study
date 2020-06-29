@@ -6,6 +6,7 @@ import com.spring.security.demo.handler.MyAuthenticationSuccessHandler;
 import com.spring.security.demo.handler.MyExpiredSessionStrategy;
 import com.spring.security.demo.handler.MyLogoutSuccessHandler;
 import com.spring.security.demo.service.impl.MyUserDetailsServiceImpl;
+import com.spring.security.demo.smscode.SmsCodeSecurityConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -45,6 +46,8 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     private MyUserDetailsServiceImpl myUserDetailsServiceImpl;
     @Resource
     private DataSource dataSource;
+    @Resource
+    private SmsCodeSecurityConfig smsCodeSecurityConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -82,12 +85,14 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
                     .passwordParameter( "password" )
                 .successHandler( myAuthenticationSuccessHandler )
                 .failureHandler( myAuthenticationFailureHandler )
+            // 添加短信验证码配置
+            .and().apply(  smsCodeSecurityConfig )
             // 登录认证成功后默认转跳的路径
             //.defaultSuccessUrl( "/index" )
             .and()
                 .authorizeRequests()
                     // 不需要通过登录验证就可以被访问的资源路径
-                    .antMatchers( "/login.html", "/login","/logoutSuccess.html","/captcha","/sendSmsCode/**" ).permitAll()
+                    .antMatchers( "/login.html", "/login","/logoutSuccess.html","/captcha","/sendSmsCode/**","/smsLogin" ).permitAll()
                     // 登录即可访问的路径
                     .antMatchers( "/index" ).authenticated()
                     // 其他路径动态授权

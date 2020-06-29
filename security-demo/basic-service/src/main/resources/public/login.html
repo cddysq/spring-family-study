@@ -21,8 +21,8 @@
     </form>
     <h1>短信登录</h1>
     <form>
-        <span>手机号码：</span><input type="text" v-model="phone" name="phone" id="phone"> <br>
-        <span>短信验证码：</span><input type="text" v-model="smsCode" name="smsCode" id="smsCode">
+        <span>手机号码：</span><input type="text" v-model="smsCodeLogin.phone" name="phone" id="phone"> <br>
+        <span>短信验证码：</span><input type="text" v-model="smsCodeLogin.smsCode" name="smsCode" id="smsCode">
         <input type="button" @click="sendSmsCode()" value="获取"><br>
         <input type="button" @click="smsLogin()" value="登陆">
     </form>
@@ -43,8 +43,10 @@
                 // 图形验证码
                 captchaCode: ""
             },
-            phone: '',
-            smsCode: '',
+            smsCodeLogin:{
+                phone: '',
+                smsCode: '',
+            }
         }, methods: {
             alocked(item) {
                 item.state = !item.state;
@@ -67,18 +69,34 @@
             },
             sendSmsCode() {
                 const re = /^1\d{10}$/
-                if (this.phone === "" || !re.test(this.phone)) {
+                if (this.smsCodeLogin.phone === "" || !re.test(this.smsCodeLogin.phone)) {
                     alert('输入手机号格式有误');
                     return;
                 }
-                axios.get('/sendSmsCode/' + this.phone).then((res) => {
+                axios.get('/sendSmsCode/' + this.smsCodeLogin.phone).then((res) => {
                     if (res.data.flag) {
                         alert(res.data.data);
                     } else {
                         alert(res.data.message);
                     }
                 })
-            }
+            },
+            smsLogin() {
+                if (this.smsCodeLogin.phone === "" || this.smsCodeLogin.smsCode === "") {
+                    alert('手机号和短信验证码均不能为空');
+                    return;
+                }
+                var qs = Qs;
+                axios.post('/smsLogin', qs.stringify(this.smsCodeLogin)).then((res) => {
+                    if (res.data.flag) {
+                        //登录成功,跳转到index.html
+                        location.href = res.data.data;
+                    } else {
+                        //失败，提示失败信息
+                        alert(res.data.message);
+                    }
+                });
+            },
         }
     });
 </script>

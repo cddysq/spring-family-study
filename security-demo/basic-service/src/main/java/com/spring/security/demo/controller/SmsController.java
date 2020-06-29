@@ -49,6 +49,6 @@ public class SmsController {
         //TODO: 2020/5/6 11:14 此处调用验证码发送服务接口
         log.info( "当前手机号：{}，mock短信验证码为：{}", phone, smsCode.getCode() );
         session.setAttribute( Constants.SMS_CODE_SESSION_KEY, smsCode );
-        return ResultResponse.success( "短信息已经发送到您的手机" );
+        return ResultResponse.success( "验证码已经发送到您的手机" );
     }
 }
