@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
+ * 权限验证
+ *
  * @author Haotian
  * @version 1.0.0
  * @date 2020/6/29 20:07
