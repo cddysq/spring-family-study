@@ -42,7 +42,7 @@ public class MyUserDetails implements UserDetails {
     /**
      * 账号是否可用
      */
-    Integer enabled;
+    Boolean enabled;
 
     /**
      * 用户的权限集合
@@ -71,7 +71,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return this.enabled;
     }
 
     @Override
@@ -81,6 +81,15 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return enabled.equals( 0 );
+        return enabled;
     }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+        this.enabled = accountNonLocked;
+    }
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 }
