@@ -26,5 +26,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/
-/pom.xml

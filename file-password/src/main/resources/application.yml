@@ -1,0 +1,7 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+config:
+  dockerUsername: 186074301
+  dockerPassword: 65974816
