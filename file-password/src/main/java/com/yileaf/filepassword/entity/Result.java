@@ -36,13 +36,12 @@ public class Result extends LinkedHashMap<String, Object> {
     /**
      * 请求成功
      *
-     * @param code    状态码
      * @param data    返回数据
      * @param message 返回消息
      * @return 消息对象
      */
-    public static Result success(int code, Object data, String message) {
-        return success( true, code, data, message );
+    public static Result success(Object data, String message) {
+        return success( true, HttpStatus.HTTP_OK, data, message );
     }
 
     /**

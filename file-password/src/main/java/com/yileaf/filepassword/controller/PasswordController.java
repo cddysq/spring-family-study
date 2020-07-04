@@ -5,9 +5,10 @@ import cn.hutool.http.HttpStatus;
 import com.yileaf.filepassword.config.SystemParams;
 import com.yileaf.filepassword.constant.Messages;
 import com.yileaf.filepassword.entity.Result;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.yileaf.filepassword.model.Ssm;
+import com.yileaf.filepassword.service.SsmPasswordService;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -22,16 +23,26 @@ import javax.annotation.Resource;
 public class PasswordController {
     @Resource
     private SystemParams systemParams;
+    @Resource
+    private SsmPasswordService ssmPasswordService;
 
     @GetMapping("/docker")
     public Result returnDockerPassword(@RequestParam(defaultValue = "") String username, @RequestParam(defaultValue = "") String password) {
         if (username.equalsIgnoreCase( systemParams.getDockerUsername() ) && password.equalsIgnoreCase( systemParams.getDockerPassword() )) {
             return Result.success(
-                    HttpStatus.HTTP_OK,
                     "密文=" + Base64.encode( systemParams.getDockerUsername() ),
                     Messages.DOCKER_PASSWORD_OK
             );
         }
-        return Result.error( HttpStatus.HTTP_BAD_REQUEST, Messages.DOCKER_PASSWORD_ERROR );
+        return Result.error( HttpStatus.HTTP_OK, Messages.DOCKER_PASSWORD_ERROR );
+    }
+
+    @PostMapping("/ssm")
+    public Result returnSsmPassword(@Validated @RequestBody Ssm ssm) {
+        boolean flag = ssmPasswordService.getSsmPassword( ssm );
+        if (flag) {
+            return Result.success( "", "" );
+        }
+        return Result.error( HttpStatus.HTTP_OK, Messages.DOCKER_PASSWORD_ERROR );
     }
 }
