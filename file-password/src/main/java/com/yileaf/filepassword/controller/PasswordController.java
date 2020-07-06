@@ -4,13 +4,16 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.http.HttpStatus;
 import com.yileaf.filepassword.config.SystemParams;
 import com.yileaf.filepassword.constant.Messages;
-import com.yileaf.filepassword.entity.Result;
+import com.yileaf.filepassword.entity.NormalLog;
+import com.yileaf.filepassword.model.Result;
 import com.yileaf.filepassword.model.Ssm;
 import com.yileaf.filepassword.service.SsmPasswordService;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 解压密码请求接口
@@ -25,6 +28,8 @@ public class PasswordController {
     private SystemParams systemParams;
     @Resource
     private SsmPasswordService ssmPasswordService;
+    @Resource
+    private MongoTemplate mongoTemplate;
 
     @GetMapping("/docker")
     public Result returnDockerPassword(@RequestParam(defaultValue = "") String username, @RequestParam(defaultValue = "") String password) {
@@ -44,5 +49,10 @@ public class PasswordController {
             return Result.success( "", "" );
         }
         return Result.error( HttpStatus.HTTP_OK, Messages.DOCKER_PASSWORD_ERROR );
+    }
+
+    @GetMapping("findAll")
+    public List<NormalLog> findAll() {
+        return mongoTemplate.findAll( NormalLog.class );
     }
 }

@@ -1,4 +1,4 @@
-package com.yileaf.filepassword.entity;
+package com.yileaf.filepassword.model;
 
 import cn.hutool.http.HttpStatus;
 import com.yileaf.filepassword.constant.Messages;

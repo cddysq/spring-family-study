@@ -2,6 +2,12 @@ spring:
   output:
     ansi:
       enabled: always
+  data:
+    mongodb:
+      host: 121.36.24.140
+      username: admin
+      password: admin
+      database: admin
 config:
   dockerUsername: 186074301
   dockerPassword: 65974816

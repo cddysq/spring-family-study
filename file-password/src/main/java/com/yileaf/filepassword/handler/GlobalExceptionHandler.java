@@ -1,7 +1,7 @@
 package com.yileaf.filepassword.handler;
 
 import cn.hutool.http.HttpStatus;
-import com.yileaf.filepassword.entity.Result;
+import com.yileaf.filepassword.model.Result;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
