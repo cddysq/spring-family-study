@@ -70,6 +70,7 @@ public class WebLogAspect {
         normalLog.setFinishTime( DateUtil.between( endTime, startTime, DateUnit.MS ) + "毫秒" );
         normalLog.setReturnData( JSON.toJSONString( returnValue, SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteMapNullValue ) );
         log.info( "===返回通知==={}", JSON.toJSONString( returnValue, SerializerFeature.PrettyFormat ) );
+        // mongo主键异常处理
         if (StrUtil.isNotEmpty( normalLog.getId() )) {
             normalLog.setId( null );
         }

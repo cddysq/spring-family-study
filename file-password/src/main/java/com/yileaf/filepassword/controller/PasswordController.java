@@ -51,8 +51,14 @@ public class PasswordController {
         return Result.error( HttpStatus.HTTP_OK, Messages.DOCKER_PASSWORD_ERROR );
     }
 
-    @GetMapping("findAll")
+    /**
+     * 查询所有正常日志
+     *
+     * @return 正常日志集合
+     */
+    @GetMapping("/findAll")
     public List<NormalLog> findAll() {
         return mongoTemplate.findAll( NormalLog.class );
     }
+
 }
