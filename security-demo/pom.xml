@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>basic-service</module>
+        <module>jwt-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -63,6 +64,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
