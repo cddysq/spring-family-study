@@ -1,11 +1,14 @@
 package com.spring.security.demo.config;
 
+import com.spring.security.demo.filter.JwtAuthenticationTokenFilter;
 import com.spring.security.demo.handler.MyAuthenticationFailureHandler;
 import com.spring.security.demo.handler.MyAuthenticationSuccessHandler;
 import com.spring.security.demo.handler.MyLogoutSuccessHandler;
 import com.spring.security.demo.service.impl.MyUserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,20 +35,20 @@ import javax.sql.DataSource;
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 启用方法级别安全注解
 public class FormLoginConfig extends WebSecurityConfigurerAdapter {
     @Resource
-    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
-    @Resource
-    private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
-    @Resource
     private MyLogoutSuccessHandler myLogoutSuccessHandler;
     @Resource
     private MyUserDetailsServiceImpl myUserDetailsServiceImpl;
     @Resource
     private DataSource dataSource;
+    @Resource
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 开启退出功能
-        http.logout()
+        // 启用jwt过滤器
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+            // 开启退出功能
+            .logout()
                 // 指定退出请求的默认路径
                 .logoutUrl( "/signout" )
                 // 指定退出成功执行的处理方法
@@ -66,11 +69,13 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
             .and().csrf().disable()
                 .authorizeRequests()
                     // 不需要通过登录验证就可以被访问的资源路径
-                    .antMatchers( "/login.html", "/login","/logoutSuccess.html","/captcha","/sendSmsCode/**","/smsLogin" ).permitAll()
+                    .antMatchers( "/authentication", "/refreshtoken" ).permitAll()
                     // 登录即可访问的路径
                     .antMatchers( "/index" ).authenticated()
                     // 其他路径动态授权
-                    .anyRequest().access( "@rabcService.hasPermission(request,authentication)" );
+                    .anyRequest().access( "@rabcService.hasPermission(request,authentication)" )
+            .and().sessionManagement()
+                .sessionCreationPolicy( SessionCreationPolicy.STATELESS);
     }
 
     @Override
@@ -96,4 +101,11 @@ public class FormLoginConfig extends WebSecurityConfigurerAdapter {
         jdbcTokenRepository.setDataSource( dataSource );
         return jdbcTokenRepository;
     }
+
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
 }
