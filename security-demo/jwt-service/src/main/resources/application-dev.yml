@@ -1,0 +1,26 @@
+server:
+  port: 8888
+spring:
+  output:
+    ansi:
+      enabled: always
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: AngelBeats
+    url: jdbc:mysql://127.0.0.1:3306/spring_security?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+  security:
+    login:
+      type: JSON
+jwt:
+  header: JWTHeaderName
+  secret: aabbccdd
+  expiration: 3600000
+logging:
+  level:
+    root: info
+  file:
+    path: /logs
