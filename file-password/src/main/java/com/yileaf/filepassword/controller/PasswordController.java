@@ -33,9 +33,9 @@ public class PasswordController {
 
     @GetMapping("/docker")
     public Result returnDockerPassword(@RequestParam(defaultValue = "") String username, @RequestParam(defaultValue = "") String password) {
-        if (username.equalsIgnoreCase( systemParams.getDockerUsername() ) && password.equalsIgnoreCase( systemParams.getDockerPassword() )) {
+        if (username.equalsIgnoreCase( systemParams.getLoginUsername() ) && password.equalsIgnoreCase( systemParams.getDockerPassword() )) {
             return Result.success(
-                    "密文=" + Base64.encode( systemParams.getDockerUsername() ),
+                    "密文=" + Base64.encode( systemParams.getLoginUsername() ),
                     Messages.DOCKER_PASSWORD_OK
             );
         }

@@ -18,7 +18,7 @@ public class SystemParams {
     /**
      * docker解压文件请求账户
      */
-    private String dockerUsername;
+    private String loginUsername;
 
     /**
      * docker解压文件解压密码

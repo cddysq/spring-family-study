@@ -9,5 +9,5 @@ spring:
       password: admin
       database: admin
 config:
-  dockerUsername: 186074301
+  loginUsername: 186074301
   dockerPassword: 65974816
