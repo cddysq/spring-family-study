@@ -26,7 +26,17 @@ public class SsmPasswordServiceImpl implements SsmPasswordService {
         // 24进制转换后的群号
         String loginName = Integer.toString( Convert.toInt( systemParams.getLoginUsername() ), 24 );
         String password = ssm.getPassword();
-        SecureUtil.md5( password + loginName );
-        return false;
+        // 校验用户名密码
+        return loginName.equals( ssm.getUsername() ) && password.equals( this.generatePassword() );
+    }
+
+    /**
+     * 生成密码
+     *
+     * @return 密码
+     */
+    public String generatePassword() {
+
+        return "";
     }
 }
