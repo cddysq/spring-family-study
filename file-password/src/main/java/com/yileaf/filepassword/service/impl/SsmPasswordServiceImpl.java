@@ -6,10 +6,10 @@ import cn.hutool.crypto.digest.MD5;
 import com.yileaf.filepassword.config.SystemParams;
 import com.yileaf.filepassword.model.Ssm;
 import com.yileaf.filepassword.service.SsmPasswordService;
+import org.jooq.lambda.Seq;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.validation.constraints.NotBlank;
 
 /**
  * @author Haotian
@@ -37,8 +37,8 @@ public class SsmPasswordServiceImpl implements SsmPasswordService {
      */
     public String generatePassword() {
         // 生成26个大写英文字母
-        Seq.rangeClosed('A', 'Z')
-                .map(Object::toString)
+        Seq.rangeClosed( 'A', 'Z' )
+                .map( Object::toString )
                 .toList();
         return "";
     }
