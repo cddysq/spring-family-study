@@ -36,7 +36,10 @@ public class SsmPasswordServiceImpl implements SsmPasswordService {
      * @return 密码
      */
     public String generatePassword() {
-
+        // 生成26个大写英文字母
+        Seq.rangeClosed('A', 'Z')
+                .map(Object::toString)
+                .toList();
         return "";
     }
 }
