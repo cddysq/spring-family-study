@@ -45,8 +45,9 @@ public class SsmLoginPasswordTest {
                                 || f.startsWith( "A" ) )
                 .skip( 1 )
                 .limit( 3 )
-                .collect( Collectors.joining( "HHH" ) )
-                .substring( name.length(), 1 << 4 ).toLowerCase();
+                .collect( Collectors.joining( "HH" ) )
+                .substring( name.length() + 1, 1 << 4 )
+                .toLowerCase();
 
         System.out.println( password );
     }
