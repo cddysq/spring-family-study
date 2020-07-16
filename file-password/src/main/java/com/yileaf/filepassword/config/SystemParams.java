@@ -24,4 +24,9 @@ public class SystemParams {
      * docker解压文件解压密码
      */
     private String dockerPassword;
+
+    /**
+     * ssm解压文件密码
+     */
+    private String ssmPassword;
 }

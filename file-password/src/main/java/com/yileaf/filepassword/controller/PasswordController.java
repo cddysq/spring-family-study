@@ -39,16 +39,18 @@ public class PasswordController {
                     Messages.DOCKER_PASSWORD_OK
             );
         }
-        return Result.error( HttpStatus.HTTP_OK, Messages.DOCKER_PASSWORD_ERROR );
+        return Result.error( HttpStatus.HTTP_OK, Messages.CHECK_PASSWORD_ERROR );
     }
 
     @PostMapping("/ssm")
     public Result returnSsmPassword(@Validated @RequestBody Ssm ssm) {
-        boolean flag = ssmPasswordService.getSsmPassword( ssm );
+        boolean flag = ssmPasswordService.checkSsmLoginNameAndPassword( ssm );
         if (flag) {
-            return Result.success( "", "" );
+            return Result.success(
+                    "密文=" + Base64.encode( systemParams.getSsmPassword() ),
+                    Messages.SSM_PASSWORD_OK );
         }
-        return Result.error( HttpStatus.HTTP_OK, Messages.DOCKER_PASSWORD_ERROR );
+        return Result.error( HttpStatus.HTTP_OK, Messages.CHECK_PASSWORD_ERROR );
     }
 
     /**

@@ -9,10 +9,10 @@ import com.yileaf.filepassword.model.Ssm;
  */
 public interface SsmPasswordService {
     /**
-     * 获取ssm阶段解压密码
+     * 检查ssm阶段解压密码获取请求
      *
      * @param ssm 请求信息
      * @return true:成功 false:失败
      */
-    boolean getSsmPassword(Ssm ssm);
+    boolean checkSsmLoginNameAndPassword(Ssm ssm);
 }

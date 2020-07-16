@@ -1,13 +1,10 @@
 package com.yileaf.filepassword;
 
-import cn.hutool.core.util.StrUtil;
 import com.yileaf.filepassword.utils.ChineseCharToEn;
 import org.jooq.lambda.Seq;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * ssm 压缩文件相关测试
@@ -43,6 +40,7 @@ public class SsmLoginPasswordTest {
                                 || f.startsWith( "U" )
                                 || f.startsWith( "R" )
                                 || f.startsWith( "A" ) )
+                .distinct()
                 .skip( 1 )
                 .limit( 3 )
                 .collect( Collectors.joining( "HH" ) )
@@ -50,6 +48,7 @@ public class SsmLoginPasswordTest {
                 .toLowerCase();
 
         System.out.println( password );
+        System.out.println( new StringBuilder( password ).reverse() );
     }
 
 }
