@@ -5,14 +5,16 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/9 19:28
- * @Description: 测试接口
- */
+ * 测试接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/17 22:06
+ **/
 @RestController
 public class HelloController {
     @GetMapping("/hello")
-    public Mono<String> hello(){
+    public Mono<String> hello() {
         return Mono.just( "Welcome to reactive world ~" );
     }
 }

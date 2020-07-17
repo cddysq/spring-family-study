@@ -6,10 +6,12 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/10 20:11
- * @Description: 用户数据 crud 接口
- */
+ * 用户数据 crud 接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/17 22:05
+ **/
 @Component
 public interface UserRepository extends ReactiveCrudRepository<User, String> {
     /**

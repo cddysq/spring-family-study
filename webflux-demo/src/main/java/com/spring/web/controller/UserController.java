@@ -10,10 +10,12 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/9 20:48
- * @Description: 用户接口
- */
+ * 用户接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/17 22:07
+ **/
 @RestController
 @RequestMapping("/user")
 public class UserController {

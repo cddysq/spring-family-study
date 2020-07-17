@@ -2,16 +2,17 @@ package com.spring.web.service;
 
 import com.spring.entity.User;
 import com.spring.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/9 20:30
- * @Description: 用户服务
- */
+ * 用户服务
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/17 22:06
+ **/
 @Service
 public class UserService {
     private final UserRepository userRepository;

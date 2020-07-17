@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
-* @Author: Haotian
-* @Date: 2020/1/9 19:27
-* @Description: Webflux 入门
-**/
+ * Webflux 入门
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/17 22:07
+ **/
 @SpringBootApplication
 public class WebfluxDemoApplication {
 

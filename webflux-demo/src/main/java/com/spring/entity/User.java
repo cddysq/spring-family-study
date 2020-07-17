@@ -11,10 +11,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/9 19:58
- * @Description: 用户实体类
- */
+ * 用户实体类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/17 22:04
+ **/
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
