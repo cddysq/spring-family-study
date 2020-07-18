@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.*;
 
 /**
- * @Author: Haotian
- * @Date: 2020/2/20 21:59
- * @Description: 访问接口
- */
+ * 访问接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/18 20:49
+ **/
 @Controller
 @Slf4j
 public class DemoController {

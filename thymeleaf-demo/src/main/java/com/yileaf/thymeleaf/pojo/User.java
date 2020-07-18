@@ -6,10 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Author: Haotian
- * @Date: 2020/2/20 22:20
- * @Description: 用户实体类
- */
+ * 用户实体类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/18 20:49
+ **/
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
