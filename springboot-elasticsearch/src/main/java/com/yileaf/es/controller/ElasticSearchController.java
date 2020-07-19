@@ -24,10 +24,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @Author: Haotian
- * @Date: 2020/2/8 19:41
- * @Description: 模拟接收前端数据存入es中
- */
+ * 模拟接收前端数据传入es中
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/19 22:20
+ **/
 @Slf4j
 @RestController
 @RequestMapping("/es")

@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @Author: Haotian
- * @Date: 2020/2/8 19:07
- * @Description: 启动类
- */
+ * 启动类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/19 22:22
+ **/
 @SpringBootApplication
 public class ElasticSearchApplication {
     public static void main(String[] args) {

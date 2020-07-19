@@ -8,10 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * @Author: Haotian
- * @Date: 2020/2/8 18:57
- * @Description: 用户操作接口
- */
+ * 用户操作接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/19 22:21
+ **/
 @Component
 public interface GirlRepository extends ElasticsearchRepository<Girl, Long> {
     /**

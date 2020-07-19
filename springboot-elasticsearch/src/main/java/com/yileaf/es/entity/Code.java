@@ -1,10 +1,12 @@
 package com.yileaf.es.entity;
 
 /**
- * @Author: Haotian
- * @Date: 2020/2/8 20:11
- * @Description: 返回状态码
- */
+ * 返回状态码
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/19 22:20
+ **/
 public class Code {
     /**
      * 成功
