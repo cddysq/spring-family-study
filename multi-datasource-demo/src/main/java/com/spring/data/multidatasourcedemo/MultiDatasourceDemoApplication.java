@@ -16,10 +16,10 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/6 19:31
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/20 19:10
  **/
-
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
         JdbcTemplateAutoConfiguration.class}) //排除Spring Boot数据自动装配依赖
