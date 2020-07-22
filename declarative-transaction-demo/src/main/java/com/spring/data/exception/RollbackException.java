@@ -1,10 +1,12 @@
 package com.spring.data.exception;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/7 16:30
- * @Description: 自定义异常
- */
+ * 自定义异常
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/22 14:39
+ **/
 public class RollbackException extends Exception {
 
 }

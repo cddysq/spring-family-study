@@ -3,9 +3,10 @@ package com.spring.data.service;
 import com.spring.data.exception.RollbackException;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/7 16:32
- */
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/22 14:39
+ **/
 public interface FooService {
     /**
      * 插入数据
@@ -24,6 +25,5 @@ public interface FooService {
      *
      * @throws RollbackException 自定义的异常
      */
-
     void invokeInsertThenRollback() throws RollbackException;
 }

@@ -13,8 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/7 16:48
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/22 14:38
  **/
 @SpringBootApplication
 @EnableTransactionManagement(mode = AdviceMode.PROXY)
@@ -40,14 +41,14 @@ public class DeclarativeTransactionDemoApplication implements CommandLineRunner 
     @Override
     public void run(String... args) throws Exception {
         fooService.insertRecord();
-        //打印总记录数，此方法未回滚，返回一条对应结果
+        // 打印总记录数，此方法未回滚，返回一条对应结果
         log.info( "aaa {}",
                 jdbcTemplate
                         .queryForObject( "SELECT COUNT(*) FROM FOO WHERE BAR='aaa'", Long.class ) );
         try {
             fooService.insertThenRollback();
         } catch (RollbackException e) {
-            //打印总记录数，此方法进行回滚，返回零条对应结果
+            // 打印总记录数，此方法进行回滚，返回零条对应结果
             log.info( "bbb {}",
                     jdbcTemplate
                             .queryForObject( "SELECT COUNT(*) FROM FOO WHERE BAR='bbb'", Long.class ) );
@@ -55,7 +56,7 @@ public class DeclarativeTransactionDemoApplication implements CommandLineRunner 
         try {
             fooService.invokeInsertThenRollback();
         } catch (RollbackException e) {
-            //打印总记录数，此方法未回滚，返回一条对应结果
+            // 打印总记录数，此方法未回滚，返回一条对应结果
             log.info( "bbb {}",
                     jdbcTemplate
                             .queryForObject( "SELECT COUNT(*) FROM FOO WHERE BAR='bbb'", Long.class ) );
