@@ -12,9 +12,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * @Author：Haotian
- * @Date：2019/11/12 20:57
- */
+ * 数据源启动入口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/22 14:30
+ **/
 @SpringBootApplication
 @Slf4j
 public class DatasourceDemoApplication implements CommandLineRunner {
