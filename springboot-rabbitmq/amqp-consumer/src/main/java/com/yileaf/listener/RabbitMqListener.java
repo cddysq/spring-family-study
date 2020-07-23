@@ -5,12 +5,14 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/20 22:35
- * @Description: mq 队列监听类
- */
+ * mq 队列监听类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/23 15:18
+ **/
 @Component
-public class RabbimtMQListener {
+public class RabbitMqListener {
 
     @RabbitListener(queues = "boot_queue")
     public void listenerQueue(Message message) {

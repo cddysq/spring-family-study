@@ -2,11 +2,14 @@ package com.yileaf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
-* @Author: Haotian
-* @Date: 2020/1/20 22:12
-* @Description: 消息提供启动类
-**/
+ * 消息提供启动类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/23 15:21
+ **/
 @SpringBootApplication
 public class AmqpProducerApplication {
 
