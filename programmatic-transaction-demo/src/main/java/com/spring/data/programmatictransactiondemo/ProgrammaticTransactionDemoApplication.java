@@ -11,8 +11,11 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/7 15:10
+ * 编程式事务启动类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/24 16:54
  **/
 @SpringBootApplication
 @Slf4j
@@ -33,22 +36,22 @@ public class ProgrammaticTransactionDemoApplication implements CommandLineRunner
 
     @Override
     public void run(String... args) {
-        //打印事务开启前表中记录总数
+        // 打印事务开启前表中记录总数
         log.info( "COUNT BEFORE TRANSACTION：{}", getCount() );
-        //开启事务，使用无结果的事务回调
-        transactionTemplate.execute( new  TransactionCallbackWithoutResult() {
+        // 开启事务，使用无结果的事务回调
+        transactionTemplate.execute( new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
                 //执行插入数据
                 jdbcTemplate.execute( "INSERT INTO FOO (ID,BAR) VALUES(1,'test') " );
                 jdbcTemplate.execute( "INSERT INTO FOO (ID,BAR) VALUES(2,'test') " );
-                //打印插入数据后，但还未进行事务回滚，表中记录总数
+                // 打印插入数据后，但还未进行事务回滚，表中记录总数
                 log.info( "COUNT IN TRANSACTION：{}", getCount() );
-                //设置事务回滚
+                // 设置事务回滚
                 transactionStatus.setRollbackOnly();
             }
         } );
-        //打印事务回滚后表中记录总数
+        // 打印事务回滚后表中记录总数
         log.info( "COUNT AFTER TRANSACTION：{}", getCount() );
     }
 
