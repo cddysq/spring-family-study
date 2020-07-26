@@ -15,21 +15,27 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/10 19:40
- * @Description: 父实体类
- */
+ * 父实体类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/26 17:10
+ **/
 @MappedSuperclass
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseEntity implements Serializable {
+    private static final long serialVersionUID = 8947757878012077756L;
+
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(updatable = false)
     @CreationTimestamp
     private Date createTime;
+
     @UpdateTimestamp
     private Date updateTime;
 }

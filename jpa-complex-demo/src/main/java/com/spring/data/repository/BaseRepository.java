@@ -6,10 +6,12 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/10 20:11
- * @Description: 父接口继承PagingAndSortingRepository对CrudRepository的扩展，以提供使用分页和排序。
- */
+ * 父接口继承PagingAndSortingRepository对CrudRepository的扩展，以提供使用分页和排序。
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/26 17:12
+ **/
 @NoRepositoryBean
 public interface BaseRepository<T, Long> extends PagingAndSortingRepository<T, Long> {
     /**

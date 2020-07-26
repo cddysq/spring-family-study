@@ -1,10 +1,12 @@
 package com.spring.data.model;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/10 20:04
- * @Description: 订单状态
- */
+ * 订单状态
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/26 17:12
+ **/
 public enum OrderState {
     INIT, PAID, BREWING, BREWED, TAKEN, CANCELLED
 }
