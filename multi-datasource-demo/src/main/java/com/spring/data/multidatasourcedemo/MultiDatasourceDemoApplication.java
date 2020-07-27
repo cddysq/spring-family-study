@@ -16,13 +16,15 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
+ * 多数据源启动类
+ *
  * @author Haotian
  * @version 1.0.0
  * @date 2020/7/20 19:10
  **/
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
-        JdbcTemplateAutoConfiguration.class}) //排除Spring Boot数据自动装配依赖
+        JdbcTemplateAutoConfiguration.class}) // 排除Spring Boot数据自动装配依赖
 @Slf4j
 public class MultiDatasourceDemoApplication {
 
@@ -33,16 +35,16 @@ public class MultiDatasourceDemoApplication {
     @Bean
     @ConfigurationProperties("foo.datasource")
     public DataSourceProperties fooDataSourceProperties() {
-        //将指定配置进行封装返回一个新的数据源基类
+        // 将指定配置进行封装返回一个新的数据源基类
         return new DataSourceProperties();
     }
 
     @Bean
     public DataSource fooDataSource() {
         DataSourceProperties dataSourceProperties = fooDataSourceProperties();
-        //日志打印数据源连接
+        // 日志打印数据源连接
         log.info( "foo datasource：{}", dataSourceProperties.getUrl() );
-        //初始化数据源并返回
+        // 初始化数据源并返回
         return dataSourceProperties.initializeDataSourceBuilder().build();
     }
 
@@ -55,7 +57,7 @@ public class MultiDatasourceDemoApplication {
     @Bean
     @Resource
     public PlatformTransactionManager fooTxManager(DataSource fooDataSource) {
-        //将数据源交由事务管理
+        // 将数据源交由事务管理
         return new DataSourceTransactionManager( fooDataSource );
     }
 
