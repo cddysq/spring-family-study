@@ -5,19 +5,24 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Author: Haotian
- * @Date: 2019/12/13 20:24
- * @Description: 用户实体类
- */
+ * 用户实体类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:28
+ **/
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Girl {
+public class Girl implements Serializable {
+    private static final long serialVersionUID = 1704359281209743091L;
+
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;

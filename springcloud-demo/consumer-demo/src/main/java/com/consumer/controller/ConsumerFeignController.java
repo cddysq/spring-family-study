@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/15 14:58
- * @Description: feign用户接口
- */
+ * feign用户接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:20
+ **/
 @RestController
 @RequestMapping("/cf")
 public class ConsumerFeignController {

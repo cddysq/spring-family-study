@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/13 20:00
- * @Description: 消费接口
- */
+ * 消费接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:20
+ **/
 @RestController
 @RequestMapping("/consumer")
 @DefaultProperties(defaultFallback = "defaultFallback")

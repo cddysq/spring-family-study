@@ -8,9 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/13 19:53
- * @Description: 消费者启动类
+ * 消费者启动类
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:17
  **/
 //@SpringBootApplication
 //@EnableDiscoveryClient

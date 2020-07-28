@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/13 16:11
- * @Description: 用户接口
- */
+ * 用户接口
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:29
+ **/
 @RestController
 @RequestMapping("/user")
 @RefreshScope //刷新配置
@@ -24,7 +26,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public List<Girl> findByIds(@PathVariable("id") Integer[] ids){
-        return this.userService.findByIds(ids);
+    public List<Girl> findByIds(@PathVariable("id") Integer[] ids) {
+        return this.userService.findByIds( ids );
     }
 }

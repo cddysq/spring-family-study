@@ -5,10 +5,12 @@ import com.provider.pojo.Girl;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/13 16:09
- * @Description: 用户crud
- */
+ * 用户crud
+ *
+ * @author Haoti0an
+ * @version 1.0.0
+ * @date 2020/7/28 15:28
+ **/
 @Component
 public interface UserMapper extends BaseMapper<Girl> {
 }

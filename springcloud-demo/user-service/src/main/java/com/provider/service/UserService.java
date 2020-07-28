@@ -9,10 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/13 16:11
- * @Description: 用户服务
- */
+ * 用户服务
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:27
+ **/
 @Service
 public class UserService {
     @Autowired

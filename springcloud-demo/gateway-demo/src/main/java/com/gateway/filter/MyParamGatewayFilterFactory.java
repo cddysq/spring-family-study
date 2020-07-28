@@ -6,14 +6,16 @@ import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFac
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/15 18:07
- * @Description: 自定义局部过滤器，名称对应***GatewayFilterFactory
- */
+ * 自定义局部过滤器，名称对应***GatewayFilterFactory
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:24
+ **/
 @Component
 @Slf4j
 public class MyParamGatewayFilterFactory extends AbstractGatewayFilterFactory<MyParamGatewayFilterFactory.Config> {
@@ -28,14 +30,14 @@ public class MyParamGatewayFilterFactory extends AbstractGatewayFilterFactory<My
 
     @Override
     public List<String> shortcutFieldOrder() {
-        return Arrays.asList( PARAM_NAME );
+        return Collections.singletonList( PARAM_NAME );
     }
 
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
-            //如果是配置中MyParam=对应参数，进行过滤打印内容
+            // 如果是配置中MyParam=对应参数，进行过滤打印内容
             if (request.getQueryParams().containsKey( config.param )) {
                 request.getQueryParams().get( config.param )
                         .forEach( value ->

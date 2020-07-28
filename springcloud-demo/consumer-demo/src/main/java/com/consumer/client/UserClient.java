@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/15 14:55
- * @Description: feign客户端
- */
+ * feign客户端
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:21
+ **/
 @FeignClient(value = "user-service", fallback = UserClientFallback.class, configuration = FeignConfig.class)
 public interface UserClient {
     /**

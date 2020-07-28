@@ -5,10 +5,12 @@ import com.consumer.pojo.Girl;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author: Haotian
- * @Date: 2020/1/15 15:42
- * @Description: 用户服务hystrix降级处理
- */
+ * 用户服务hystrix降级处理
+ *
+ * @author Haotian
+ * @version 1.0.0
+ * @date 2020/7/28 15:22
+ **/
 @Component
 public class UserClientFallback implements UserClient {
 
