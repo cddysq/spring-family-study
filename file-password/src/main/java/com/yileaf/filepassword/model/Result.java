@@ -2,6 +2,7 @@ package com.yileaf.filepassword.model;
 
 import cn.hutool.http.HttpStatus;
 import com.yileaf.filepassword.constant.Messages;
+import io.swagger.annotations.ApiModel;
 
 import java.util.LinkedHashMap;
 
@@ -12,6 +13,7 @@ import java.util.LinkedHashMap;
  * @version 1.0.0
  * @date 2020/7/3 21:16
  **/
+@ApiModel("请求返回对象")
 public class Result extends LinkedHashMap<String, Object> {
     private static final long serialVersionUID = 7575364393972626005L;
 
