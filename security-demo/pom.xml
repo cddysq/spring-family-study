@@ -21,7 +21,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <fastjson.version>1.2.68</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <hutool.version>5.3.2</hutool.version>
         <httpclient.version>4.5.13</httpclient.version>
     </properties>
